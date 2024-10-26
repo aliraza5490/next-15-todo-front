@@ -4,13 +4,37 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+}
+
+.bg {
+  background: url('/bg-desktop-light.jpg') no-repeat;
+  background-size: cover;
+  height: 18.75rem;
+}
+
+@media only screen and (max-width: 375px) {
+  .bg {
+    background: url('/bg-mobile-light.jpg') no-repeat;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #181824;
+    --foreground: #ffffff;
+  }
+
+  .bg {
+    background: url('/bg-desktop-dark.jpg') no-repeat;
+    background-size: cover;
+    height: 18.75rem;
+  }
+
+  @media only screen and (max-width: 375px) {
+    .bg {
+      background: url('/bg-mobile-dark.jpg') no-repeat;
+    }
   }
 }
 

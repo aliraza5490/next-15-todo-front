@@ -1,7 +1,8 @@
 export default function Home() {
   return (
     <div>
-      <span>HI there</span>
+      {/* background */}
+      <div className="bg w-full"></div>
     </div>
   );
 }
