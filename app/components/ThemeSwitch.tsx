@@ -35,9 +35,9 @@ const ThemeSwitch: React.FC = () => {
   return (
     <div onClick={switchTheme} className="cursor-pointer">
       {theme === 'dark' ? (
-        <Image src={SunIcon} alt="Light Theme Icon" />
+        <Image src={SunIcon} alt="Light Theme Icon" height={20} width={20} />
       ) : (
-        <Image src={MoonIcon} alt="Dark Theme Icon" />
+        <Image src={MoonIcon} alt="Dark Theme Icon" height={20} width={20} />
       )}
     </div>
   );

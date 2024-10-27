@@ -9,8 +9,8 @@ export default function Home() {
 
       {/* content */}
       <div className="max-w-md px-6 relative top-10 md:top-20 left-1/2 -translate-x-1/2">
-        <div className="flex justify-between pb-8">
-          <h1 className="text-lg md:text-2xl font-[700] text-white tracking-[.6rem] md:tracking-[.8rem]">
+        <div className="flex justify-between pb-8 items-center">
+          <h1 className="text-xl md:text-3xl font-[700] text-white tracking-[.6rem] md:tracking-[.8rem]">
             TODO
           </h1>
           <ThemeSwitch />
