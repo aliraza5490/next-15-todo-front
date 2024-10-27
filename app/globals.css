@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition: all 0.25s linear;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;
@@ -13,28 +17,30 @@
   height: 18.75rem;
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 470px) {
   .bg {
     background: url('/bg-mobile-light.jpg') no-repeat;
+    background-size: cover;
+    height: 12.5rem;
+  }
+
+  html[data-theme='dark'] {
+    .bg {
+      background: url('/bg-mobile-dark.jpg') no-repeat !important;
+      background-size: cover !important;
+      height: 12.5rem !important;
+    }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #181824;
-    --foreground: #ffffff;
-  }
+html[data-theme='dark'] {
+  --background: #181824;
+  --foreground: #ffffff;
 
   .bg {
     background: url('/bg-desktop-dark.jpg') no-repeat;
     background-size: cover;
     height: 18.75rem;
-  }
-
-  @media only screen and (max-width: 375px) {
-    .bg {
-      background: url('/bg-mobile-dark.jpg') no-repeat;
-    }
   }
 }
 
