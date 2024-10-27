@@ -20,21 +20,21 @@ The designs were created to the following widths:
 
 ### Light Theme
 
-- Very Light Gray: hsl(0, 0%, 98%)
-- Very Light Grayish Blue: hsl(236, 33%, 92%)
-- Light Grayish Blue: hsl(233, 11%, 84%)
-- Dark Grayish Blue: hsl(236, 9%, 61%)
-- Very Dark Grayish Blue: hsl(235, 19%, 35%)
+- Very Light Gray: <span style="background-color: hsl(0, 0%, 98%); padding: 0 10px;">hsl(0, 0%, 98%)</span>
+- Very Light Grayish Blue: <span style="background-color: hsl(236, 33%, 92%); padding: 0 10px;">hsl(236, 33%, 92%)</span>
+- Light Grayish Blue: <span style="background-color: hsl(233, 11%, 84%); padding: 0 10px;">hsl(233, 11%, 84%)</span>
+- Dark Grayish Blue: <span style="background-color: hsl(236, 9%, 61%); padding: 0 10px;">hsl(236, 9%, 61%)</span>
+- Very Dark Grayish Blue: <span style="background-color: hsl(235, 19%, 35%); padding: 0 10px;">hsl(235, 19%, 35%)</span>
 
 ### Dark Theme
 
-- Very Dark Blue: hsl(235, 21%, 11%)
-- Very Dark Desaturated Blue: hsl(235, 24%, 19%)
-- Light Grayish Blue: hsl(234, 39%, 85%)
-- Light Grayish Blue (hover): hsl(236, 33%, 92%)
-- Dark Grayish Blue: hsl(234, 11%, 52%)
-- Very Dark Grayish Blue: hsl(233, 14%, 35%)
-- Very Dark Grayish Blue: hsl(237, 14%, 26%)
+- Very Dark Blue: <span style="background-color: hsl(235, 21%, 11%); padding: 0 10px;">hsl(235, 21%, 11%)</span>
+- Very Dark Desaturated Blue: <span style="background-color: hsl(235, 24%, 19%); padding: 0 10px;">hsl(235, 24%, 19%)</span>
+- Light Grayish Blue: <span style="background-color: hsl(234, 39%, 85%); padding: 0 10px;">hsl(234, 39%, 85%)</span>
+- Light Grayish Blue (hover): <span style="background-color: hsl(236, 33%, 92%); padding: 0 10px;">hsl(236, 33%, 92%)</span>
+- Dark Grayish Blue: <span style="background-color: hsl(234, 11%, 52%); padding: 0 10px;">hsl(234, 11%, 52%)</span>
+- Very Dark Grayish Blue: <span style="background-color: hsl(233, 14%, 35%); padding: 0 10px;">hsl(233, 14%, 35%)</span>
+- Very Dark Grayish Blue: <span style="background-color: hsl(237, 14%, 26%); padding: 0 10px;">hsl(237, 14%, 26%)</span>
 
 ## Typography
 
