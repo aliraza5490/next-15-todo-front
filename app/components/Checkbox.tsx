@@ -1,5 +1,5 @@
 'use client';
-import IconCheck from '@/app/assets/images/icon-check.svg';
+import IconCheck from '@/assets/images/icon-check.svg';
 import Image from 'next/image';
 import { FC } from 'react';
 

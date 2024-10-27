@@ -1,6 +1,6 @@
 'use client';
-import MoonIcon from '@/app/assets/images/icon-moon.svg';
-import SunIcon from '@/app/assets/images/icon-sun.svg';
+import MoonIcon from '@/assets/images/icon-moon.svg';
+import SunIcon from '@/assets/images/icon-sun.svg';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
