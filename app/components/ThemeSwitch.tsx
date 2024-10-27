@@ -33,7 +33,7 @@ const ThemeSwitch: React.FC = () => {
   };
 
   return (
-    <div onClick={switchTheme} className="cursor-pointer">
+    <div onClick={switchTheme} className="pointer">
       {theme === 'dark' ? (
         <Image src={SunIcon} alt="Light Theme Icon" height={20} width={20} />
       ) : (

@@ -14,7 +14,7 @@ const Checkbox: FC<{
   };
 
   return (
-    <label htmlFor={id} className="cursor-pointer">
+    <label htmlFor={id} className="pointer">
       {/* By default it should be un-checked */}
       <input
         className="hidden"

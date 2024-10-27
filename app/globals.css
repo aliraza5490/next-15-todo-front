@@ -49,3 +49,10 @@ html[data-theme='dark'] {
     height: 18.75rem;
   }
 }
+
+@layer utilities {
+  .pointer {
+    @apply cursor-pointer;
+    @apply select-none;
+  }
+}
