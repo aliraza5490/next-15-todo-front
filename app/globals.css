@@ -8,7 +8,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: hsl(235, 21%, 11%);
 }
 
 body {
