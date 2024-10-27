@@ -8,8 +8,7 @@ const Checkbox: FC<{
   value?: boolean;
   onChange?: (value: boolean) => void;
 }> = ({ id, value, onChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('Checkbox value:', e.target.checked);
+  const handleChange = () => {
     if (onChange) onChange(!value);
   };
 

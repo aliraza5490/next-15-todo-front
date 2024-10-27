@@ -56,3 +56,9 @@ html[data-theme='dark'] {
     @apply select-none;
   }
 }
+
+.todo-item:hover {
+  button {
+    opacity: 1;
+  }
+}

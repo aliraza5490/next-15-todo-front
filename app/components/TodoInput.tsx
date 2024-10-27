@@ -3,7 +3,7 @@ const TodoInput: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
 }) => {
   return (
     <input
-      className="w-full outline-none dark:text-[hsl(233,11%,84%)]  dark:bg-secondDark m-0 p-0"
+      className="w-full outline-none dark:text-[hsl(233,11%,84%)]  dark:bg-secondDark m-0 p-0 text-sm "
       type="text"
       {...props}
     />

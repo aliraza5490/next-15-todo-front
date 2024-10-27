@@ -1,5 +1,6 @@
 import AddTodoForm from './components/AddTodoForm';
 import ThemeSwitch from './components/ThemeSwitch';
+import TodoList from './components/TodoList';
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
         <AddTodoForm />
 
         {/* Todo List */}
-        <div></div>
+        <TodoList />
       </div>
     </div>
   );
