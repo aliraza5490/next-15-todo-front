@@ -24,12 +24,12 @@ const Checkbox: FC<{
         onChange={handleChange}
       />
       {value ? (
-        <div className="w-[25px] h-[25px] rounded-full flex items-center justify-center from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] bg-gradient-to-br ">
+        <div className="w-[23px] h-[23px] rounded-full flex items-center justify-center from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] bg-gradient-to-br ">
           <Image src={IconCheck} alt="Checked Item" height={10} width={10} />
         </div>
       ) : (
-        <div className="w-[25px] h-[25px] rounded-full flex items-center justify-center from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] hover:bg-gradient-to-br bg-[#2f3247]">
-          <div className="w-[23px] h-[23px] rounded-full bg-white dark:bg-secondDark"></div>
+        <div className="w-[23px] h-[23px] rounded-full flex items-center justify-center from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] hover:bg-gradient-to-br bg-[#2f3247]">
+          <div className="w-[21px] h-[21px] rounded-full bg-white dark:bg-secondDark"></div>
         </div>
       )}
     </label>
