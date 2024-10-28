@@ -19,7 +19,7 @@ const AddTodoForm: FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between rounded-md p-3 md:p-4 gap-4 bg-white dark:bg-secondDark ">
+    <div className="flex items-center justify-between rounded p-3 md:p-4 gap-4 bg-white dark:bg-secondDark ">
       <Checkbox id="add-checkbox" value={checked} onChange={setChecked} />
       <TodoInput
         placeholder="Create a new task..."

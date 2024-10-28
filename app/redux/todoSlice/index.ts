@@ -1,6 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = [
+export interface Todo {
+  id: string;
+  value: string;
+  completed: boolean;
+  sequence: number;
+}
+
+const initialState: Todo[] = [
   {
     id: '1',
     value: 'Learn Angular',
@@ -39,10 +46,13 @@ const todoSlice = createSlice({
     removeTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload);
     },
+    clearCompleted: (state) => {
+      return state.filter((todo) => !todo.completed);
+    },
   },
 });
 
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, clearCompleted } = todoSlice.actions;
 
 const todoReducer = todoSlice.reducer;
 
