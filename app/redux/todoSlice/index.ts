@@ -42,17 +42,28 @@ const todoSlice = createSlice({
         completed: action.payload.completed,
         sequence: state.length + 1,
       });
+      return state;
     },
     removeTodo: (state, action) => {
-      return state.filter((todo) => todo.id !== action.payload);
+      state = state.filter((todo) => todo.id !== action.payload);
+      return state;
     },
     clearCompleted: (state) => {
-      return state.filter((todo) => !todo.completed);
+      state = state.filter((todo) => !todo.completed);
+      return state;
+    },
+    toggleTodo: (state, action: PayloadAction<string>) => {
+      const todo = state.find((todo) => todo.id === action.payload);
+      if (todo) {
+        state[state.indexOf(todo)].completed = !todo.completed;
+      }
+      return state;
     },
   },
 });
 
-export const { addTodo, removeTodo, clearCompleted } = todoSlice.actions;
+export const { addTodo, removeTodo, clearCompleted, toggleTodo } =
+  todoSlice.actions;
 
 const todoReducer = todoSlice.reducer;
 
