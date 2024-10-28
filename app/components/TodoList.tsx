@@ -7,7 +7,7 @@ const TodoList = () => {
 
   return (
     <div>
-      <div className="flex flex-col just bg-white dark:bg-secondDark rounded mt-6">
+      <div className="flex flex-col just bg-white dark:bg-secondDark rounded mt-6 drop-shadow-2xl shadow-slate-400">
         {[...todoList]
           .sort((a, b) => b.sequence - a.sequence)
           .map((todo, i) => (
@@ -31,7 +31,9 @@ const TodoList = () => {
 };
 
 const Line = () => {
-  return <div className="h-[.5px] w-full bg-[hsl(237,14%,26%)]"></div>;
+  return (
+    <div className="h-[.5px] w-full bg-[hsl(236,33%,92%)] dark:bg-[hsl(237,14%,26%)]"></div>
+  );
 };
 
 export default TodoList;
