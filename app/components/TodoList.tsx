@@ -40,7 +40,7 @@ const TodoList = () => {
       />
 
       {/* DND Hint */}
-      <p className="dark:text-[hsl(233,14%,35%)] text-center my-10">
+      <p className="text-[hsl(234,11%,52%)] text-center my-10">
         Drag and drop to reorder list
       </p>
     </div>
