@@ -7,7 +7,7 @@ const TodoList = () => {
 
   return (
     <div>
-      <div className="flex flex-col just bg-white dark:bg-secondDark rounded mt-6 max-h-72 overflow-y-scroll">
+      <div className="flex flex-col just bg-white dark:bg-secondDark rounded mt-6">
         {[...todoList]
           .sort((a, b) => b.sequence - a.sequence)
           .map((todo, i) => (
