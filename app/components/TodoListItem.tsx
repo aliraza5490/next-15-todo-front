@@ -17,18 +17,20 @@ const TodoListItem: FC<TodoListItemProps> = ({ id, value, completed }) => {
   const [checked, setChecked] = useState(completed);
   const dispatch = useAppDispatch();
 
+  const handleChange = () => {
+    setChecked(!checked);
+    dispatch(toggleTodo(id));
+  };
+
   return (
     <div className="todo-item flex items-center justify-center p-4 md:p-4 gap-4">
-      <Checkbox id={id + '-checkbox'} value={checked} onChange={setChecked} />
+      <Checkbox id={id + '-checkbox'} value={checked} onChange={handleChange} />
       <p
         className={cn(
           'w-full outline-none dark:text-[hsl(236,9%,61%)] m-0 p-0 text-sm pointer first-line:leading-3',
           checked && 'line-through dark:text-[hsl(233,14%,35%)]',
         )}
-        onClick={() => {
-          setChecked(!checked);
-          dispatch(toggleTodo(id));
-        }}
+        onClick={handleChange}
       >
         {value}
       </p>
