@@ -1,4 +1,5 @@
 import AddTodoForm from './components/AddTodoForm';
+import RegisterSW from './components/RegisterSW';
 import ThemeSwitch from './components/ThemeSwitch';
 import TodoList from './components/TodoList';
 
@@ -23,6 +24,8 @@ export default function Home() {
         {/* Todo List */}
         <TodoList />
       </div>
+
+      <RegisterSW />
     </div>
   );
 }
