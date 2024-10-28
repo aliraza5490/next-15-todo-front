@@ -57,7 +57,7 @@ const TodoListItem: FC<TodoListItemProps> = ({
 
   return (
     <div
-      className="todo-item flex items-center justify-center p-4 md:p-4 gap-4"
+      className="todo-item flex items-center justify-center p-4 md:p-4 gap-4 w-full"
       ref={setNodeRef}
       style={parentStyles}
     >

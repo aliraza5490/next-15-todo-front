@@ -18,6 +18,11 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import {
+  restrictToFirstScrollableAncestor,
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from '@dnd-kit/modifiers';
+import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
@@ -78,6 +83,7 @@ const TodoList = () => {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragCancel={handleDragCancel}
+        modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
       >
         <div className="flex flex-col just bg-white dark:bg-secondDark rounded rounded-bl-none rounded-br-none mt-6 shadow-slate-400 relative">
           <SortableContext
@@ -97,7 +103,11 @@ const TodoList = () => {
             ))}
           </SortableContext>
 
-          <DragOverlay adjustScale style={{ transformOrigin: '0 0' }}>
+          <DragOverlay
+            modifiers={[restrictToFirstScrollableAncestor]}
+            adjustScale
+            style={{ transformOrigin: '0 0' }}
+          >
             {activeItem ? (
               <TodoListItem
                 id={activeItem.id}
