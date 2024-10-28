@@ -7,13 +7,46 @@ import Image from 'next/image';
 import { FC, useState } from 'react';
 import Checkbox from './Checkbox';
 
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
 interface TodoListItemProps {
-  id: string;
+  id: number;
   value: string;
   completed: boolean;
+  forceDragging?: boolean;
+  sequence: number;
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({ id, value, completed }) => {
+const TodoListItem: FC<TodoListItemProps> = ({
+  id,
+  value,
+  completed,
+  forceDragging = false,
+  sequence,
+}) => {
+  const {
+    attributes,
+    isDragging,
+    listeners,
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+  } = useSortable({
+    id: sequence,
+  });
+
+  const parentStyles = {
+    transform: CSS.Transform.toString(transform),
+    transition: transition || undefined,
+    opacity: isDragging ? '0.4' : '1',
+  };
+
+  const draggableStyles = {
+    cursor: isDragging || forceDragging ? 'grabbing' : 'grab',
+  };
+
   const [checked, setChecked] = useState(completed);
   const dispatch = useAppDispatch();
 
@@ -23,7 +56,11 @@ const TodoListItem: FC<TodoListItemProps> = ({ id, value, completed }) => {
   };
 
   return (
-    <div className="todo-item flex items-center justify-center p-4 md:p-4 gap-4">
+    <div
+      className="todo-item flex items-center justify-center p-4 md:p-4 gap-4"
+      ref={setNodeRef}
+      style={parentStyles}
+    >
       <Checkbox id={id + '-checkbox'} value={checked} onChange={handleChange} />
       <p
         className={cn(
@@ -31,6 +68,10 @@ const TodoListItem: FC<TodoListItemProps> = ({ id, value, completed }) => {
           checked && 'line-through dark:text-[hsl(233,14%,35%)]',
         )}
         onClick={handleChange}
+        ref={setActivatorNodeRef}
+        style={draggableStyles}
+        {...attributes}
+        {...listeners}
       >
         {value}
       </p>

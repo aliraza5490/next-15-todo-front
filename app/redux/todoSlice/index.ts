@@ -1,7 +1,8 @@
+import { arrayMove } from '@dnd-kit/sortable';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Todo {
-  id: string;
+  id: number;
   value: string;
   completed: boolean;
   sequence: number;
@@ -9,19 +10,19 @@ export interface Todo {
 
 const initialState: Todo[] = [
   {
-    id: '1',
+    id: 1,
     value: 'Learn Angular',
     completed: false,
     sequence: 1,
   },
   {
-    id: '2',
+    id: 2,
     value: 'Learn React',
     completed: false,
     sequence: 2,
   },
   {
-    id: '3',
+    id: 3,
     value: 'Learn Vue',
     completed: true,
     sequence: 3,
@@ -37,7 +38,7 @@ const todoSlice = createSlice({
       action: PayloadAction<{ value: string; completed: boolean }>,
     ) => {
       state.push({
-        id: state.length + 1 + '',
+        id: state.length + 1,
         value: action.payload.value,
         completed: action.payload.completed,
         sequence: state.length + 1,
@@ -52,17 +53,31 @@ const todoSlice = createSlice({
       state = state.filter((todo) => !todo.completed);
       return state;
     },
-    toggleTodo: (state, action: PayloadAction<string>) => {
+    toggleTodo: (state, action: PayloadAction<number>) => {
       const todo = state.find((todo) => todo.id === action.payload);
       if (todo) {
         state[state.indexOf(todo)].completed = !todo.completed;
       }
       return state;
     },
+    updateList: (
+      state,
+      action: PayloadAction<{
+        activeIndex: number;
+        overIndex: number;
+      }>,
+    ) => {
+      const updated: Todo[] = arrayMove(
+        [...state],
+        action.payload.activeIndex,
+        action.payload.overIndex,
+      ).map((ex: Todo, i: number) => ({ ...ex, sequence: i + 1 }));
+      return updated;
+    },
   },
 });
 
-export const { addTodo, removeTodo, clearCompleted, toggleTodo } =
+export const { addTodo, removeTodo, clearCompleted, toggleTodo, updateList } =
   todoSlice.actions;
 
 const todoReducer = todoSlice.reducer;
