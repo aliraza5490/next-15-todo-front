@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import StoreProvider from './redux/StoreProvider';
 
 const JosefinSans = localFont({
   src: './fonts/JosefinSansVF.ttf',
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme={''}>
-      <body className={`${JosefinSans.className} antialiased`}>{children}</body>
+      <body className={`${JosefinSans.className} antialiased`}>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }
