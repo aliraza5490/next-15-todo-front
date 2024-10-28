@@ -2,13 +2,13 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Next.js PWA',
-    short_name: 'NextPWA',
+    name: 'TODO App',
+    short_name: 'TodoApp',
     description: 'A Progressive Web App built with Next.js',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: '#000000',
+    theme_color: '#181824',
     icons: [
       {
         src: '/favicon/web-app-manifest-192x192.png',
