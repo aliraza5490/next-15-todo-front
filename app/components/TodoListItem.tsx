@@ -1,87 +1,51 @@
 'use client';
 import CrossIcon from '@/assets/images/icon-cross.svg';
 import { useAppDispatch } from '@/redux/hooks';
-import { removeTodo, toggleTodo } from '@/redux/todoSlice';
+import { removeTodo, Todo, toggleTodo } from '@/redux/todoSlice';
 import cn from '@/utils/cn';
+import { Reorder } from 'framer-motion';
 import Image from 'next/image';
 import { FC, useState } from 'react';
 import Checkbox from './Checkbox';
 
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-
 interface TodoListItemProps {
-  id: number;
-  value: string;
-  completed: boolean;
-  forceDragging?: boolean;
-  sequence: number;
+  todo: Todo;
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({
-  id,
-  value,
-  completed,
-  forceDragging = false,
-  sequence,
-}) => {
-  const {
-    attributes,
-    isDragging,
-    listeners,
-    setNodeRef,
-    setActivatorNodeRef,
-    transform,
-    transition,
-  } = useSortable({
-    id: sequence,
-  });
-
-  const parentStyles = {
-    transform: CSS.Transform.toString(transform),
-    transition: transition || undefined,
-    opacity: isDragging ? '0.4' : '1',
-  };
-
-  const draggableStyles = {
-    cursor: isDragging || forceDragging ? 'grabbing' : 'grab',
-  };
-
-  const [checked, setChecked] = useState(completed);
+const TodoListItem: FC<TodoListItemProps> = ({ todo }) => {
+  const [checked, setChecked] = useState(todo.completed);
   const dispatch = useAppDispatch();
 
   const handleChange = () => {
     setChecked(!checked);
-    dispatch(toggleTodo(id));
+    dispatch(toggleTodo(todo.id));
   };
 
   return (
-    <div
-      className="todo-item flex items-center justify-center p-4 md:p-4 gap-4 w-full"
-      ref={setNodeRef}
-      style={parentStyles}
-    >
-      <Checkbox id={id + '-checkbox'} value={checked} onChange={handleChange} />
-      <p
-        className={cn(
-          'w-full outline-none dark:text-[hsl(236,9%,61%)] m-0 p-0 text-sm pointer first-line:leading-3',
-          checked && 'line-through dark:text-[hsl(233,14%,35%)]',
-        )}
-        onClick={handleChange}
-        ref={setActivatorNodeRef}
-        style={draggableStyles}
-        {...attributes}
-        {...listeners}
-      >
-        {value}
-      </p>
-      <button
-        className="md:opacity-0 pointer"
-        onClick={() => dispatch(removeTodo(id))}
-      >
-        <Image src={CrossIcon} alt="delete" />
-      </button>
-    </div>
+    <Reorder.Item key={todo.id} value={todo}>
+      <div className="todo-item flex items-center justify-center p-4 md:p-4 gap-4 w-full">
+        <Checkbox
+          id={todo.id + '-checkbox'}
+          value={checked}
+          onChange={handleChange}
+        />
+        <p
+          className={cn(
+            'w-full outline-none dark:text-[hsl(236,9%,61%)] m-0 p-0 text-sm pointer first-line:leading-3',
+            checked && 'line-through dark:text-[hsl(233,14%,35%)]',
+          )}
+          onClick={handleChange}
+        >
+          {todo.value}
+        </p>
+        <button
+          className="md:opacity-0 pointer"
+          onClick={() => dispatch(removeTodo(todo.id))}
+        >
+          <Image src={CrossIcon} alt="delete" />
+        </button>
+      </div>
+    </Reorder.Item>
   );
 };
 

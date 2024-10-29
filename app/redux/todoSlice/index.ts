@@ -1,4 +1,3 @@
-import { arrayMove } from '@dnd-kit/sortable';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Todo {
@@ -60,19 +59,8 @@ const todoSlice = createSlice({
       }
       return state;
     },
-    updateList: (
-      state,
-      action: PayloadAction<{
-        activeIndex: number;
-        overIndex: number;
-      }>,
-    ) => {
-      const updated: Todo[] = arrayMove(
-        [...state],
-        action.payload.activeIndex,
-        action.payload.overIndex,
-      ).map((ex: Todo, i: number) => ({ ...ex, sequence: i + 1 }));
-      return updated;
+    updateList: (state, action: PayloadAction<Todo[]>) => {
+      return action.payload;
     },
   },
 });

@@ -1,73 +1,19 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Todo, updateList } from '@/redux/todoSlice';
+import { AnimatePresence, Reorder } from 'framer-motion';
 import { useState } from 'react';
 import Line from './Line';
 import TodoListFooter from './TodoListFooter';
 import TodoListItem from './TodoListItem';
 
-import {
-  closestCenter,
-  DndContext,
-  DragEndEvent,
-  DragOverlay,
-  DragStartEvent,
-  PointerSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  restrictToFirstScrollableAncestor,
-  restrictToVerticalAxis,
-  restrictToWindowEdges,
-} from '@dnd-kit/modifiers';
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-
 const TodoList = () => {
   const todoList = useAppSelector((state) => state.todo);
-  const [activeItem, setActiveItem] = useState<Todo | undefined>(undefined);
   const dispatch = useAppDispatch();
-
-  const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
-
-  // triggered when dragging starts
-  const handleDragStart = (event: DragStartEvent) => {
-    const { active } = event;
-    setActiveItem(todoList?.find((item) => item.sequence === active.id));
-  };
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (!over) return;
-
-    const activeItem = todoList.find((ex) => ex.sequence === active.id);
-    const overItem = todoList.find((ex) => ex.sequence === over.id);
-
-    if (!activeItem || !overItem) {
-      return;
-    }
-
-    const activeIndex = todoList.findIndex((ex) => ex.sequence === active.id);
-    const overIndex = todoList.findIndex((ex) => ex.sequence === over.id);
-
-    if (activeIndex !== overIndex) {
-      dispatch(updateList({ activeIndex, overIndex }));
-    }
-    setActiveItem(undefined);
-  };
-
-  const handleDragCancel = () => {
-    setActiveItem(undefined);
-  };
 
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
 
-  const all = [...todoList].sort((a, b) => b.sequence - a.sequence);
+  const all = [...todoList];
 
   const todoContainer = {
     all,
@@ -77,49 +23,22 @@ const TodoList = () => {
 
   return (
     <div>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
-        modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
+      <Reorder.Group
+        axis="y"
+        values={todoList}
+        onReorder={(value) => dispatch(updateList(value))}
       >
         <div className="flex flex-col just bg-white dark:bg-secondDark rounded rounded-bl-none rounded-br-none mt-6 shadow-slate-400 relative">
-          <SortableContext
-            items={todoContainer[filter].map((item) => item.sequence)}
-            strategy={verticalListSortingStrategy}
-          >
+          <AnimatePresence mode="popLayout">
             {todoContainer[filter].map((todo: Todo, i: number) => (
               <div key={todo.id}>
-                <TodoListItem
-                  id={todo.id}
-                  value={todo.value}
-                  completed={todo.completed}
-                  sequence={todo.sequence}
-                />
+                <TodoListItem todo={todo} />
                 {i < todoList.length - 1 && <Line />}
               </div>
             ))}
-          </SortableContext>
-
-          <DragOverlay
-            modifiers={[restrictToFirstScrollableAncestor]}
-            adjustScale
-            style={{ transformOrigin: '0 0' }}
-          >
-            {activeItem ? (
-              <TodoListItem
-                id={activeItem.id}
-                value={activeItem.value}
-                completed={activeItem.completed}
-                sequence={activeItem.sequence}
-                forceDragging={true}
-              />
-            ) : null}
-          </DragOverlay>
+          </AnimatePresence>
         </div>
-      </DndContext>
+      </Reorder.Group>
 
       <TodoListFooter
         left={todoContainer.active.length}
