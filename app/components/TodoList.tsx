@@ -1,6 +1,7 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Todo, updateList } from '@/redux/todoSlice';
+import { TodoFilters } from '@/types/todo';
 import { AnimatePresence, Reorder } from 'framer-motion';
 import { useState } from 'react';
 import Line from './Line';
@@ -11,7 +12,7 @@ const TodoList = () => {
   const todoList = useAppSelector((state) => state.todo);
   const dispatch = useAppDispatch();
 
-  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
+  const [filter, setFilter] = useState<TodoFilters>(TodoFilters.all);
 
   const all = [...todoList];
 

@@ -1,26 +1,23 @@
 'use client';
 import { useAppDispatch } from '@/redux/hooks';
 import { clearCompleted } from '@/redux/todoSlice';
+import { TodoFilters } from '@/types/todo';
 import cn from '@/utils/cn';
 import { FC, MouseEventHandler, ReactNode } from 'react';
 import Line from './Line';
 
-type filtersType = 'all' | 'active' | 'completed';
-
-const filters: filtersType[] = ['all', 'active', 'completed'];
-
 const TodoListFooter: FC<{
-  setFilter: (filter: filtersType) => void;
-  activeFilter: filtersType;
+  setFilter: (filter: TodoFilters) => void;
+  activeFilter: TodoFilters;
   left: number;
 }> = ({ setFilter, left, activeFilter }) => {
   const dispatch = useAppDispatch();
 
-  const filterList = filters.map((filter) => (
+  const filterList = Object.entries(TodoFilters).map(([filter]) => (
     <Filter
       isActive={activeFilter === filter}
       key={filter}
-      onClick={() => setFilter(filter)}
+      onClick={() => setFilter(filter as TodoFilters)}
     >
       {filter.charAt(0).toUpperCase() + filter.slice(1)}
     </Filter>

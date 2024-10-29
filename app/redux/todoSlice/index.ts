@@ -4,29 +4,9 @@ export interface Todo {
   id: number;
   value: string;
   completed: boolean;
-  sequence: number;
 }
 
-const initialState: Todo[] = [
-  {
-    id: 1,
-    value: 'Learn Angular',
-    completed: false,
-    sequence: 1,
-  },
-  {
-    id: 2,
-    value: 'Learn React',
-    completed: false,
-    sequence: 2,
-  },
-  {
-    id: 3,
-    value: 'Learn Vue',
-    completed: true,
-    sequence: 3,
-  },
-];
+const initialState: Todo[] = [];
 
 const todoSlice = createSlice({
   name: 'todo',
@@ -40,7 +20,6 @@ const todoSlice = createSlice({
         id: state.length + 1,
         value: action.payload.value,
         completed: action.payload.completed,
-        sequence: state.length + 1,
       });
       return state;
     },
