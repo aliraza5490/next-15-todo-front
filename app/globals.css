@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  transition: all 0.25s linear;
+  transition: background 0.25s linear;
 }
 
 :root {

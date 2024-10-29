@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 // local storage > browser theme
 const ThemeSwitch: React.FC = () => {
-  const [theme, setTheme] = useState('');
+  const [theme, setTheme] = useState(localStorage.getItem('theme'));
 
   const getBrowserTheme = () =>
     window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -18,14 +18,14 @@ const ThemeSwitch: React.FC = () => {
   };
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem('theme');
     const browserTheme = getBrowserTheme() ? 'dark' : 'light';
-    if (currentTheme) {
-      changeTheme(currentTheme);
-    } else if (browserTheme) {
+    if (!theme) {
       changeTheme(browserTheme);
+      document.documentElement.setAttribute('data-theme', browserTheme);
+      return;
     }
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   const switchTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
