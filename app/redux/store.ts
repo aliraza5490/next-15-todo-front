@@ -1,12 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import todoReducer from './todoSlice';
+
+const reducers = combineReducers({
+  todo: todoReducer,
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  // Specify the reducers you want to persist
+  // whitelist: ['user'], // In this example, we persist the 'user' reducer
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {
-      // Add the generated reducer here
-      todo: todoReducer,
-    },
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 };
 
